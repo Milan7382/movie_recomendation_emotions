@@ -1,3 +1,7 @@
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'model')))
+
 import streamlit as st
 from ..model.try_new import recommend, get_clean_data  # Import get_clean_data here
 import pickle
