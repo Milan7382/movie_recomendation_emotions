@@ -1,5 +1,5 @@
 import streamlit as st
-from model.try_new import recommend, get_clean_data  # Import get_clean_data here
+from ..model.try_new import recommend, get_clean_data  # Import get_clean_data here
 import pickle
 
 # Load the pre-trained movie data, vectorizer, and CountVectorizer (cv)
