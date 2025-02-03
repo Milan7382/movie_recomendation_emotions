@@ -5,7 +5,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from nltk.stem.porter import PorterStemmer
 from textblob import TextBlob
-from model.main_model import predict_genre
+from main_model import predict_genre
 import pickle
 
 ps = PorterStemmer()
