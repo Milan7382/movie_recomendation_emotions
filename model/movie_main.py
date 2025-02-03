@@ -24,7 +24,7 @@ def app():
     st.title('Movie Recommendation Based on Emotions')
     
     # Text input for the user's emotion
-    user_emotion = st.text_input("Enter your emotion", "happy")  # Default value is "happy"
+    user_emotion = st.text_input("How are you feeling today", "happy")  # Default value is "happy"
     
     # Initialize session state to track the index for pagination
     if 'index' not in st.session_state:
