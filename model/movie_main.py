@@ -38,7 +38,7 @@ def app():
             # Get the movie recommendations based on the input emotion
             st.session_state.recommendations = recommend(user_emotion, movies, vector, cv)
             st.session_state.index = 0  # Reset index for new recommendations
-            st.rerun()  # Force a re-run to update the UI
+            #st.rerun()  # Force a re-run to update the UI
         else:
             st.write("Please enter a valid emotion.")
     
