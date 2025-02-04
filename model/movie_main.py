@@ -19,47 +19,54 @@ def load_cv():
 
 cv = load_cv()  # Now you have cv loaded
 
+# Initialize session state variables if not already present
+if 'user_emotion' not in st.session_state:
+    st.session_state.user_emotion = ""  # Empty string initially
+if 'recommendations' not in st.session_state:
+    st.session_state.recommendations = []
+if 'index' not in st.session_state:
+    st.session_state.index = 0
+
 # Streamlit App
 def app():
     st.title('Movie Recommendation Based on Emotions')
-    
-    # Text input for the user's emotion
-    user_emotion = st.text_input("How are you feeling today", "happy")  # Default value is "happy"
-    
-    # Initialize session state to track the index for pagination
-    if 'index' not in st.session_state:
-        st.session_state.index = 0  # Initialize the starting index
-    if 'recommendations' not in st.session_state:
-        st.session_state.recommendations = []  # Store recommendations in session state
-    
-    # Button to get recommendations
-    if st.button('Get Recommendations'):
-        if user_emotion:
-            # Get the movie recommendations based on the input emotion
-            st.session_state.recommendations = recommend(user_emotion, movies, vector, cv)
-            st.session_state.index = 0  # Reset index for new recommendations
-            #st.rerun()  # Force a re-run to update the UI
-        else:
-            st.write("Please enter a valid emotion.")
-    
-    # Display the current set of 5 recommended movies
+
+    # **Form to take user input and prevent automatic refresh**
+    with st.form(key="emotion_form"):
+        user_emotion = st.text_input("How are you feeling today", value=st.session_state.user_emotion)
+        submit_button = st.form_submit_button("Get Recommendations")
+
+        if submit_button:
+            if user_emotion.strip():  # Ensure valid input
+                # **Reset session state before fetching new recommendations**
+                st.session_state.recommendations = []  # Clear previous results
+                st.session_state.index = 0  # Reset pagination
+                st.session_state.user_emotion = user_emotion.strip()  # Store the latest input
+                
+                # Fetch new recommendations
+                st.session_state.recommendations = recommend(st.session_state.user_emotion, movies, vector, cv)
+                st.rerun()  # Force UI refresh to apply changes
+            else:
+                st.warning("Please enter a valid emotion.")
+
+    # **Display recommendations if available**
     if st.session_state.recommendations:
         recommendations = st.session_state.recommendations
         start_index = st.session_state.index
         end_index = start_index + 5
         displayed_movies = recommendations[start_index:end_index]
-        
-        st.write("Recommended Movies:")
+
+        st.write("### Recommended Movies:")
         for movie in displayed_movies:
-            st.write(movie)
-        
-        # Button to show next 5 movies
-        if st.button('Show Next 5 Movies'):
-            if end_index < len(recommendations):  # Check if more movies are available
-                st.session_state.index = end_index  # Update the index for next set of movies
-                st.rerun()  # Force a re-run to update the UI
-            else:
-                st.write("No more movies to show.")
+            st.write(f"- {movie}")
+
+        # **Button to show next 5 movies**
+        if end_index < len(recommendations):  # Check if more movies are available
+            if st.button('Show Next 5 Movies'):
+                st.session_state.index = end_index  # Update index for next batch
+                st.rerun()  # Refresh UI with new movies
+        else:
+            st.write("No more movies to show.")
 
 # Run the app
 if __name__ == "__main__":

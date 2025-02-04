@@ -15,12 +15,13 @@ emotions_synonyms = {
     "love": [ps.stem(word) for word in ["affection", "adoration", "devotion", "fondness", "passion", "attachment", "care", "infatuation", "amour", "affinity", "tenderness", "romance"]],
     "lonely": [ps.stem(word) for word in ["isolated", "solitary", "lonesome", "desolate", "forlorn", "abandoned", "alone", "secluded", "detached", "alienated", "withdrawn", "empty"]],
     "excited": [ps.stem(word) for word in ["enthusiastic", "thrilled", "eager", "ecstatic", "elated", "overjoyed", "animated", "pumped", "exhilarated", "overcome", "jubilant", "delighted"]],
-    "calm": [ps.stem(word) for word in ["relaxed", "serene", "peaceful", "tranquil", "composed", "collected", "unruffled", "placid", "laid-back", "unperturbed", "quiet", "still"]]
+    "calm": [ps.stem(word) for word in ["relaxed", "serene", "peaceful", "tranquil", "composed", "collected", "unruffled", "placid", "laid-back", "unperturbed", "quiet", "still"]],
+    "confused": [ps.stem(word) for word in ["uncertain", "perplexed", "baffled", "puzzled", "disoriented", "lost", "bewildered", "dazed", "hesitant", "unsure", "flustered", "distraught"]]
 }
 
 # Mapping emotions to relevant movie genres with no stemming applied here
 data = {
-    "emotion": ["happy", "sad", "angry", "fear", "surprise", "disgust", "love", "lonely", "excited", "calm"],
+    "emotion": ["happy", "sad", "angry", "fear", "surprise", "disgust", "love", "lonely", "excited", "calm", "confused"],
     "genres": [
         "comedy family",  # Happy
         "drama romance documentary",  # Sad
@@ -31,9 +32,11 @@ data = {
         "romance music",  # Love
         "romance drama family",  # Lonely
         "action thriller",  # Excited
-        "history drama"  # Calm
+        "history drama",  # Calm
+        "thriller mystery"  # Confused
     ]
 }
+
 
 # Convert data into a DataFrame
 df = pd.DataFrame(data)
