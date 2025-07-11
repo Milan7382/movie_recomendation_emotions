@@ -8,7 +8,7 @@ ps = PorterStemmer()
 emotions_synonyms = {
     "happy": [ps.stem(word) for word in ["joyful", "content", "pleased", "cheerful", "delighted", "elated", "ecstatic", "excited", "satisfied", "blissful", "grateful", "overjoyed"]],
     "sad": [ps.stem(word) for word in ["unhappy", "sorrowful", "depressed", "downcast", "melancholy", "heartbroken", "gloomy", "mournful", "despondent", "blue", "disheartened", "downhearted"]],
-    "angry": [ps.stem(word) for word in ["mad", "anger","furious", "irritated", "enraged", "livid", "annoyed", "fuming", "wrathful", "incensed", "outraged", "agitated", "vexed"]],
+    "angry": [ps.stem(word) for word in ["mad", "anger","furious", "irritated", "enraged", "livid", "annoyed", "fuming", "wrathful", "incensed", "outraged", "agitated", "vexed", "frustrated"]],
     "fear": [ps.stem(word) for word in ["scared", "frightened", "terrified", "anxious", "nervous", "apprehensive", "alarmed", "worried", "horrified", "panicked", "startled", "timid"]],
     "surprise": [ps.stem(word) for word in ["astonished", "amazed", "shocked", "startled", "bewildered", "dumbfounded", "taken aback", "stupefied", "stunned", "dazed", "flabbergasted"]],
     "disgust": [ps.stem(word) for word in ["repulsed", "disdainful", "revulsed", "grossed out", "nauseated", "sickened", "horrified", "appalled", "repelled", "abhorrent", "displeased"]],
